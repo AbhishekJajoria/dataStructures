@@ -8,7 +8,7 @@ int main(){
 towers(3,'s','a','d');
 return 0;
 }
-
+/** the given method print the solution of tower of hanoi*/
 void towers(int disks,char source,char auxilery,char destination){
 	if(disks==1){
 	printf("Move disk %d from %c to %c \n",disks,source,destination);	
