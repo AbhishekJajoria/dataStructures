@@ -7,14 +7,17 @@ int try(int);
 void drawboard(void);
 int good();
 
-static short int board[8][8]={	{0,0,0,0,0,0,0,1},
-				{0,0,0,0,0,0,1,0},
+static short int board[8][8]={
+			
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
              			{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0}
+
 			};
 
 int main(){
@@ -45,25 +48,46 @@ int flag = 0 ;
 for(int i=0;i<8;i++){
 	for(int j=0;j<8;j++){
 			if(board[i][j]==1){
-			/** check for horizontal **/
+			/** 	check for horizontal **/
 				flag=flag+1;
 				if(flag==2){
 						return FALSE;
 						}
-			/**Check For Vertical      **/	
+			/**	Check For Vertical      **/	
 				for(int p = 0 ; p<8;p++){
 					if(board[p][j]==1&&(p!=i)){
 						return FALSE;
 						}
 					}
+			/**	Check for diagonal	**/
+				for(int p = i ,j1=j ; (p<8)&&(j1<8);){
+					if(board[++p][++j1]==1){
+						return FALSE;
+						}
+					}
+				for(int p = i ,j1=j ; (p>0)&&(j1>0);){
+					if(board[--p][--j1]==1){
+						return FALSE;
+						}
+					}
+				for(int p = i ,j1=j ; (p<8)&&(j1<8)&&(p>0)&&(j1>0);){
+					if(board[++p][--j1]==1){
+						return FALSE;
+						}
+					}
+				for(int p = i ,j1=j ; (p<0)&&(j1<0)&&(p<8)&&(j1<8);){
+					if(board[--p][++j1]==1){
+						return FALSE;
+						}
+					}
+			  }
+								
+
 
 			}
 			flag = 0 ;
 		}
-			
-	/**	Check for diagonal	**/
-				
-			  }	
+		
 	return 1;
 }
 
